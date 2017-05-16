@@ -10,7 +10,7 @@
 ## Error handling methods. ##
 #############################
 
-error_reporting(E_ALL);						// Report all errors for development environments only.
+error_reporting(E_ALL);				// Report all errors for development environments only.
 set_error_handler('__error_handler');		// Custom error handler.
 set_exception_handler('_push_error');		// Uncaught exceptions.
 
