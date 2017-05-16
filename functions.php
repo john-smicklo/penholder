@@ -14,7 +14,6 @@ error_reporting(E_ALL);				// Report all errors for development environments onl
 set_error_handler('__error_handler');		// Custom error handler.
 set_exception_handler('_push_error');		// Uncaught exceptions.
 
-
 ## User-defined error handler.	
 function __error_handler($code, $message, $file, $line) {
 	## The error code is not associated with error_reporting.
