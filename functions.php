@@ -32,10 +32,12 @@ function __error_handler($code, $message, $file, $line) {
 	else $error = array('heading' => 'Error', 'execute' => true);
 	
 	## Support for Asynchronous requests.
-	if(array_key_exists('inline', $_GET)) { ?>
+	if(array_key_exists('inline', $_GET)) { 
+		ob_end_clean(); ?>
 		<p class="error"><strong><?php echo $error['heading'];?>:</strong> <?php echo $message; ?> in 
 		<code><?php echo $file;?></code> on line <strong><?php echo $line;?></strong>.</p>
-	<?php } else { ?>
+	<?php } else { 
+		ob_end_flush(); ?>
 		<h3><?php echo $error['heading'];?></h3>
 		<p class="error"><?php echo $message; ?> in <code><?php echo $file;?></code> on line <strong><?php echo $line;?></strong>.</p>
 	<?php } if($error['execute'] == true) exit;
@@ -52,9 +54,11 @@ function _push_error($problem, $die = true, $header = '') {
 	if(is_object($problem)) $execute = true; else $execute = (boolean) $die;
 	
 	## Asynchronous requests.
-	if(array_key_exists('inline', $_GET)) { ?>
+	if(array_key_exists('inline', $_GET)) { 
+		ob_end_clean(); ?>
 		<p class="error"><strong>Error:</strong> <?php echo $message; ?></p>
-	<?php } else { ?>
+	<?php } else { 
+		ob_end_flush(); ?>
 		<h3><?php echo $heading; ?></h3>
 		<p class="error"><?php echo $message; ?></p>
 	<?php } if($execute === true) exit;
